@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>moskitojboss</artifactId>
+        <groupId>org.zaunberg</groupId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>moskitojboss-business</artifactId>
+    <name>MoSKito JBoss - Business Logic</name>
+    <description>MoSKito JBoss - Business logic</description>
+
+    <properties>
+        <project.base.dir>${project.parent.basedir}</project.base.dir>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <type>pom</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.anotheria</groupId>
+            <artifactId>moskito-cdi</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.zaunberg</groupId>
+            <artifactId>moskitojboss-data</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.zaunberg</groupId>
+            <artifactId>moskitojboss-data</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>de.akquinet.jbosscc</groupId>
+            <artifactId>jbosscc-needle</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

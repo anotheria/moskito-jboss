@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <div id="toolbox">
+        <h:form id="toolboxForm">
+            <ui:fragment rendered="#{loginController.loggedIn}">
+                <!-- Navigation -->
+                <h:panelGroup id="navLinks" layout="block">
+                    <h:commandLink id="loadAllTasksBtn" styleClass="lnkBtn"
+                                   action="#{taskController.reset()}"
+                                   immediate="true">
+                        <h:graphicImage value="../resources/images/icon_overview.png"/>
+                        <h:outputText value="#{messages['org.zaunberg.moskitojboss.button.tasks']}"/>
+                    </h:commandLink>
+
+                    <h:commandLink id="newTaskBtn" styleClass="lnkBtn #{not taskController.hasNewTask}"
+                                   action="#{taskController.setHasNewTask(true)}"
+                                   disabled="#{taskController.hasNewTask}">
+                        <h:graphicImage value="../resources/images/icon_add_task.png"/>
+                        <h:outputText value="#{messages['org.zaunberg.moskitojboss.button.newTask']}"/>
+                    </h:commandLink>
+                </h:panelGroup>
+
+                <!-- Category Filter -->
+                <h:panelGroup id="categoryFilterButtons" layout="block">
+                    <h:commandLink id="catALL" value="#{messages['org.zaunberg.moskitojboss.category.all']}"
+                                     action="#{taskController.setCategoryFilter(null)}"
+                                     styleClass="#{taskController.activatedCategory('ALL')}"/>
+
+                    <ui:repeat value="#{categoryController.categoryFilterTypes}" var="filterType">
+                        <h:commandLink value="#{messages[filterType.i18nDescriptionId]}"
+                                         action="#{taskController.setCategoryFilter(filterType)}"
+                                         styleClass="#{taskController.activatedCategory(filterType)}"/>
+                    </ui:repeat>
+                </h:panelGroup>
+
+                <!-- Create New Task -->
+                <h:panelGroup id="createTask" layout="block"
+                              rendered="#{taskController.hasNewTask}">
+                    <h:outputLabel for="taskNameInput" value="#{messages['org.zaunberg.moskitojboss.tasks.description']}:"
+                                   style="margin-right:5px;"/>
+                    <h:inputText id="taskNameInput" value="#{taskController.task.label}"
+                                 style="margin-right:5px;"/>
+
+                    <h:outputLabel for="createType" value="#{messages['org.zaunberg.moskitojboss.tasks.category']}:"
+                                   style="margin-right:5px;"/>
+                    <h:selectOneMenu id="createType" value="#{taskController.task.category}">
+                        <f:selectItem itemValue="#{null}"
+                                      itemLabel="#{messages['org.zaunberg.moskitojboss.tasks.categoryFilter.noSelection']}"
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{categoryController.categoryFilterTypes}" var="type"
+                                       itemValue="#{type}"
+                                       itemLabel="#{messages[type.i18nDescriptionId]}"/>
+                    </h:selectOneMenu>
+
+                    <h:commandButton id="createButton" action="#{taskController.saveNewTask}"
+                                       value="#{messages['org.zaunberg.moskitojboss.button.create']}"
+                                       styleClass="lnkBtn"/>
+
+                    <h:panelGroup layout="block" style="margin-top:3px;color:red;">
+                        <h:message for="taskNameInput" showDetail="true" showSummary="false"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{not loginController.loggedIn}">
+                <span><br /><br /></span>
+            </ui:fragment>
+        </h:form>
+    </div>
+
+</ui:composition>

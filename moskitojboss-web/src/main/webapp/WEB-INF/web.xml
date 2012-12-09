@@ -1,0 +1,183 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <display-name>Development Application (moskitojboss)</display-name>
+    <!-- Set project stage to Production for production deployments!! Production mode also allows all exceptions to propagate
+ to Seam Catch -->
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.skin</param-name>
+        <param-value>classic</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.enableControlSkinning</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.enableControlSkinningClasses</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.seam</url-pattern>
+    </servlet-mapping>
+
+    <mime-mapping>
+        <extension>ecss</extension>
+        <mime-type>text/css</mime-type>
+    </mime-mapping>
+
+    <!-- MoSKito Filter -->
+    <filter>
+       <filter-name>MoskitoUIFilter</filter-name>
+       <filter-class>net.anotheria.moskito.webui.MoskitoUIFilter</filter-class>
+       <init-param>
+           <param-name>path</param-name>
+           <param-value>/mui/</param-value>
+       </init-param>
+   </filter>
+
+    <filter>
+        <filter-name>RequestURIFilter</filter-name>
+        <filter-class>net.anotheria.moskito.web.filters.RequestURIFilter</filter-class>
+        <init-param>
+            <param-name>limit</param-name>
+            <param-value>500</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>UserAgentFilter</filter-name>
+        <filter-class>net.anotheria.moskito.web.filters.UserAgentFilter</filter-class>
+        <init-param>
+            <param-name>limit</param-name>
+            <param-value>500</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>MoskitoCommandFilter</filter-name>
+        <filter-class>net.anotheria.moskito.web.filters.MoskitoCommandFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>MonitoringSessionFilter</filter-name>
+        <filter-class>net.anotheria.moskito.web.filters.MonitoringSessionFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>MoskitoUIFilter</filter-name>
+        <url-pattern>/mui/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>MoskitoCommandFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>RequestURIFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UserAgentFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>MonitoringSessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- MoSKito Security -->
+    <security-constraint>
+       <display-name>Restrict raw XHTML Documents</display-name>
+       <web-resource-collection>
+           <web-resource-name>XHTML</web-resource-name>
+           <url-pattern>*.xhtml</url-pattern>
+       </web-resource-collection>
+       <auth-constraint/>
+   </security-constraint>
+
+   <!-- secure MoSKito access, need to config application-roles.properties
+   <security-constraint>
+       <display-name>moskitojboss</display-name>
+       <web-resource-collection>
+           <web-resource-name>/</web-resource-name>
+           <url-pattern>/mui/*</url-pattern>
+       </web-resource-collection>
+       <auth-constraint>
+           <role-name>moskitojboss-moskito</role-name>
+       </auth-constraint>
+   </security-constraint>
+   <login-config>
+       <auth-method>BASIC</auth-method>
+   </login-config>
+   <security-role>
+       <role-name>moskitojboss-moskito</role-name>
+   </security-role>
+   -->
+
+   <!-- MoSKito Listener -->
+   <listener>
+       <listener-class>
+           net.anotheria.moskito.web.session.SessionCountProducer
+       </listener-class>
+   </listener>
+   <listener>
+       <listener-class>
+           net.anotheria.moskito.webui.util.SetupPreconfiguredAccumulators
+       </listener-class>
+   </listener>
+
+    <!-- Use Seam Catch for these -->
+    <error-page>
+        <exception-type>org.jboss.seam.security.NotLoggedInException</exception-type>
+        <location>/static/error.html</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>org.jboss.seam.security.AuthorizationException</exception-type>
+        <location>/static/error.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/static/error.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/static/error.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/index.html</location>
+    </error-page>
+
+</web-app>

@@ -1,0 +1,4 @@
+project.jboss.home=/Users/mschuetz/Development/Projekte/zaunberg/jboss-as-7.0.2.Final
+project.jboss.test.home=${project.jboss.home}
+maven.repo.local=/Users/mschuetz/Development/Projekte/zaunberg/.m2/repository
+maven.executable=/Users/mschuetz/Development/apache-maven/bin/mvn

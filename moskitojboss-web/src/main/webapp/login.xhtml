@@ -1,0 +1,35 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/layout/main-template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="loginForm" rendered="#{not loginController.loggedIn}">
+	            <fieldset>
+	            	<legend>#{messages['org.zaunberg.moskitojboss.login.headline']}</legend>
+	            	<h:panelGrid columns="3" columnClasses="labelClass,inputClass,messageClass">
+		                <h:outputLabel for="username" value="#{messages['org.zaunberg.moskitojboss.login.name']}"/>
+		                <h:inputText id="username" value="#{loginController.loginName}" redisplay="true" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.login']}"/>
+						<h:message id="m_username" for="username" styleClass="validationMessages"/>
+						
+		                <h:outputLabel for="password" value="#{messages['org.zaunberg.moskitojboss.login.password']}"/>
+		                <h:inputSecret id="password" value="#{loginController.password}" redisplay="true" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.password']}"/>
+						<h:message id="m_password" for="password" styleClass="validationMessages"/>
+		
+		                <h:commandButton id="loginBtn" value="#{messages['org.zaunberg.moskitojboss.button.login']}"
+		                                 action="#{loginController.login}" styleClass="lnkBtn">
+		                	<f:ajax execute="@this loginForm" />                
+		                </h:commandButton>
+	
+		                <h:commandButton id="registerBtn" value="#{messages['org.zaunberg.moskitojboss.button.register']}"
+		                                 action="#{navigationController.goRegistration}" styleClass="lnkBtn">
+		                	<f:ajax execute="@this" />
+		                </h:commandButton>
+	                </h:panelGrid>
+	            </fieldset>  
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,113 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/layout/main-template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="tasksForm">
+            <h:panelGroup layout="block">
+                <!-- Tasks Table -->               
+                <br />
+                <h:outputText value="#{messages['org.zaunberg.moskitojboss.tasks.displayCloseTasks']}" /><h:selectBooleanCheckbox value="#{taskController.displayCloseTasks}" onclick="submit()"/>
+                <br /><br />
+                <h:outputText value="#{messages['org.zaunberg.moskitojboss.tasks.dataTable.noTasksAvailable']}" rendered="#{taskController.taskListEmpty}" styleClass="infoMessages"/>
+                
+                <h:dataTable id="tasksTable"
+                                value="#{taskController.tasks}" var="task"
+                                rowClasses="evenRow, oddRow"
+                                rendered="#{!taskController.taskListEmpty}"
+                                first="#{taskController.first}" rows="#{taskController.rows}">
+
+                    <h:column id="finCol" styleClass="taskFinished">
+                        <f:facet name="header">
+                                <h:outputText value="#{messages['org.zaunberg.moskitojboss.tasks.dataTable.header.done']}"
+                                              styleClass="sortLabel" rendered="false"/>
+                        </f:facet>
+
+                        <h:selectBooleanCheckbox value="#{task.finished}" disabled="true"
+                                                 rendered="#{!taskController.getIsTaskEditable(task)}"/>
+                        <h:selectBooleanCheckbox id="taskFinished" value="#{taskController.task.finished}"
+                                                 disabled="false"
+                                                 onclick="event.stopPropagation();"
+                                                 rendered="#{taskController.getIsTaskEditable(task)}"/>
+                    </h:column>
+
+                    <h:column id="lblCol" styleClass="">
+                        <f:facet name="header">
+                                <h:outputText value="#{messages['org.zaunberg.moskitojboss.tasks.dataTable.header.label']}"
+                                              styleClass="sortLabel" rendered="false"/>
+                        </f:facet>
+
+
+
+
+                       	<h:outputText value="#{task.label}" rendered="#{!taskController.getIsTaskEditable(task)}"/> 
+                        <h:inputText id="taskLabel" value="#{taskController.task.label}"
+                                     onclick="event.stopPropagation();"
+                                     rendered="#{taskController.getIsTaskEditable(task)}"/>
+                    </h:column>
+
+                    <h:column id="catCol">
+                        <f:facet name="header">
+                                <h:outputText value="#{messages['org.zaunberg.moskitojboss.tasks.dataTable.header.category']}"
+                                              styleClass="sortLabel" rendered="false"/>
+                        </f:facet>
+
+                        <h:outputText value="#{messages[task.category.i18nDescriptionId]}"
+                                      rendered="#{!taskController.getIsTaskEditable(task)}"
+                                      styleClass="#{task.category.name().toLowerCase()}"/>
+                        <h:selectOneMenu id="taskCategory" value="#{taskController.task.category}"
+                                         onclick="event.stopPropagation();"
+                                         rendered="#{taskController.getIsTaskEditable(task)}">
+                            <f:selectItem itemValue="#{null}"
+                                          itemLabel="#{messages['org.zaunberg.moskitojboss.tasks.categoryFilter.noSelection']}"
+                                          noSelectionOption="true"/>
+                            <f:selectItems value="#{categoryController.categoryFilterTypes}" var="type"
+                                           itemValue="#{type}"
+                                           itemLabel="#{messages[type.i18nDescriptionId]}"/>
+                        </h:selectOneMenu>
+                    </h:column>
+
+                    <h:column id="editBtnsCol">
+						<h:commandButton id="editBtn" value="#{messages['org.zaunberg.moskitojboss.button.edit']}" 
+											action="#{taskController.enableEditMode(task)}"
+											rendered="#{!taskController.getIsTaskEditable(task)}" >
+						</h:commandButton>
+                    
+                        <h:commandButton id="updateBtn" value="#{messages['org.zaunberg.moskitojboss.button.save']}"
+                                           action="#{taskController.updateTask}"
+                                           rendered="#{taskController.getIsTaskEditable(task)}"
+                                           onclick="event.stopPropagation();"
+                                           styleClass="lnkBtn">
+                        </h:commandButton>
+
+                        <h:commandButton id="removeBtn" value="#{messages['org.zaunberg.moskitojboss.button.remove']}"
+                        					action="#{taskController.removeTask()}"
+                        					rendered="#{taskController.getIsTaskEditable(task)}"
+                        					onclick="event.stopPropagation();"
+                        					styleClass="lnkBtn">
+                        </h:commandButton>
+
+                        <h:commandButton id="cancelBtn" value="#{messages['org.zaunberg.moskitojboss.button.cancel']}"
+                                           action="#{taskController.disableEditMode}"
+                                           rendered="#{taskController.getIsTaskEditable(task)}"
+                                           onclick="event.stopPropagation();"
+                                           styleClass="lnkBtn">
+                            <f:setPropertyActionListener value="#{task}" target="#{taskController.task}"/>
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton id="backward" value="#{messages['org.zaunberg.moskitojboss.tasks.dataTable.backward']}" action="#{taskController.backward()}" 
+                					rendered="#{taskController.isBackwardAvailable()}"/>
+                <h:commandButton id="forward" value="#{messages['org.zaunberg.moskitojboss.tasks.dataTable.forward']}" action="#{taskController.forward()}" 
+                					rendered="#{taskController.isForwardAvailable()}"/>
+                
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+

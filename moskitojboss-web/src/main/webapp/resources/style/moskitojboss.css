@@ -1,0 +1,492 @@
+@CHARSET "UTF-8";
+
+html {
+	height: 100%;
+    width: 100%;
+    font-family: Arial, Verdana, sans-serif;
+	font-size: 13px;
+}
+
+body {
+	background-color: rgba(126, 125, 123, 1.0);
+    height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#mainWrapper {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: url("../resources/images/horizontal-texture.png") repeat-x top center transparent;
+}
+
+
+/*************************************************
+    Commons
+*************************************************/
+h3 {
+    margin: 0 0 0 11px;
+}
+
+fieldset { 
+	border: 2px solid white; 
+	border-radius: 6px;
+}
+
+fieldset legend {
+	font-size: 15px;
+	font-weight:bold;
+}
+
+/******* Links / Buttons *******/
+.lnkBtn, .inactive,
+a, a:enabled, a:active, a:focus, a:visited, a:hover,
+button, input[type=reset], input[type=submit], input[type=button] {
+    margin: 0 4px;
+    padding: 0 8px;
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1.0);
+    text-decoration: none;
+    vertical-align: top;
+}
+
+#content a {
+    color: rgba(0, 0, 0, 1.0);
+}
+
+#toolboxForm\:categoryFilterButtons a {
+    padding: 5px 10px;
+}
+
+button, input[type=reset], input[type=submit], input[type=button],
+.active, #toolboxForm\:categoryFilterButtons a:focus {
+    background: -moz-linear-gradient(top, rgba(52, 95, 164, 1.0) 0%, rgba(52, 95, 164, 1.0) 100%);
+    background: -ms-linear-gradient(top, rgba(52, 95, 164, 1.0) 0%, rgba(52, 95, 164, 1.0) 100%);
+    background: -o-linear-gradient(top, rgba(52, 95, 164, 1.0) 0%, rgba(52, 95, 164, 1.0) 100%);
+    background: -webkit-linear-gradient(top, rgba(52, 95, 164, 1.0) 0%, rgba(52, 95, 164, 1.0) 100%);
+    color: rgba(255, 255, 255, 1.0);
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover, input[type=reset]:hover, input[type=submit]:hover, input[type=button]:hover,
+button[disabled], input[type=button][disabled], input[type=submit][disabled],
+.lnkBtn[disabled=disabled], #toolboxForm\:categoryFilterButtons a:hover {
+    background: -moz-linear-gradient(top, rgba(61, 112, 194, 1.0) 0%, rgba(61, 112, 194, 1.0) 100%);
+    background: -ms-linear-gradient(top, rgba(61, 112, 194, 1.0) 0%, rgba(61, 112, 194, 1.0) 100%);
+    background: -o-linear-gradient(top, rgba(61, 112, 194, 1.0) 0%, rgba(61, 112, 194, 1.0) 100%);
+    background: -webkit-linear-gradient(top, rgba(61, 112, 194, 1.0) 0%, rgba(61, 112, 194, 1.0) 100%);
+    color: rgba(255, 255, 255, 1.0);
+    border: none;
+    border-radius: 4px;
+}
+
+button[disabled], input[type=button][disabled], input[type=submit][disabled],
+.lnkBtn[disabled=disabled] {
+    color: rgba(212, 188, 162, 1.0);
+}
+
+input[type=reset], input[type=submit], input[type=button] {
+    padding: 5px 10px;
+}
+
+#headerLinkForm .lnkBtn {
+    margin: 0 14px;
+    padding: 0;
+    color: rgba(255, 255, 255, 1.0);
+    font-size: 14px;
+}
+
+#toolbox img {
+    margin-right: 5px;
+}
+
+#toolbox .false {
+    color: rgba(255, 255, 255, 1.0);
+    opacity: 0.5;
+}
+
+
+/*************************************************
+    Main Structure
+*************************************************/
+h1.headerMoskitoJBossLogo {
+    font-size: 36px;
+}
+
+a.headeMoskitoJBossLogo, a.headerMoskitoJBossLogo:hover {
+	font-size: 36px;
+	color: rgba(255, 255, 255, 1.0);
+    margin: 0px;
+    /*padding: 0px;*/
+}
+
+#headerWrapper {
+    width: 912px;
+    height: 89px;
+}
+
+#infobox {
+    width: 912px;
+    height: 25px;
+    text-align: left;
+}
+
+#toolbox {
+    width: 912px;
+    height: auto;
+    text-align: left;
+    position: relative;
+    top: -40px;
+}
+
+#content {
+    /*background: url('../resources/images/content_paper_edge.png')
+                no-repeat scroll left top transparent;             */
+    width: 912px;
+    height: 100%;
+    padding-top: 0px;
+    text-align: left;
+    position: relative;
+    top: -33px;
+}
+
+#footerWrapper {
+    background: url('../resources/images/footer_edge.png')
+                repeat-y scroll left top transparent;
+    width: 1014px;
+    height: 45px;
+    position: relative;
+    top: -32px;
+}
+
+/*************************************************
+    Header
+*************************************************/
+#bg_header_overlay {
+    background: url("../resources/images/horizontal-texture.png")
+                repeat-x center center transparent;
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 106px;
+    box-shadow: 0 3px 3px rgba(128, 128, 128, 0.8);
+}
+
+#header {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 1.0);
+    z-index: 0;
+}
+
+.headerMoskitoJBossLogo {
+    position: absolute;
+    top: 8px;
+    left: 4px;
+    width: 215px;
+    margin: 0;
+    z-index: 2;
+    font-family: Arial, Verdana, sans-serif;
+    font-weight: normal;
+}
+
+.headerLinkBox {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    z-index: 2;
+}
+#headerLinkForm {
+    width: 100%;
+    text-align: left;
+    font-size: 10px;
+}
+
+
+/*************************************************
+    Toolbox
+*************************************************/
+#toolboxForm\:navLinks {
+    height: 25px;
+    margin: 0 10px;
+    float: left;
+}
+
+#toolboxForm\:categoryFilterButtons {
+    height: 25px;
+    margin: 0 10px;
+    text-align: right;
+}
+
+#toolboxForm\:createTask {
+    background-color: rgba(45, 82, 142, 1.0);
+    margin: 7px 4px -7px 4px;
+    padding: 5px 5px 5px 17px;
+    color: rgba(255, 255, 255, 1.0);
+}
+
+#toolboxForm\:createButton {
+    padding: 5px 10px;
+}
+
+#toolboxForm\:createTask label {
+    font-size: 16px;
+}
+
+/*************************************************
+    Content
+*************************************************/
+#contentArea {
+	background: url('../resources/images/content_paper_filling.png')
+                repeat-y scroll left top transparent;
+	height: 100%;
+	text-align: left;
+}
+
+/******************************
+    Login View
+******************************/
+#loginForm, #registerForm {
+    background: url('../resources/images/content_paper_filling.png')
+                repeat-y scroll left top transparent;
+    height: 100%;
+    padding: 20px;
+}
+
+#loginForm fieldset {
+    width: 250px;
+}
+
+#loginForm fieldset label, #registerForm fieldset label {
+    width: 123px;
+    margin: 5px 0;
+    text-align: left;
+    float: left;
+}
+#loginForm fieldset input, #registerForm fieldset input {
+
+}
+#loginForm fieldset input[type=text],
+#loginForm fieldset input[type=password], 
+#registerForm fieldset input[type=text],
+#registerForm fieldset input[type=password],{
+    width: 120px;
+    margin: 5px 0;
+}
+
+
+/******************************
+    Tasks View
+******************************/
+#tasksForm {
+    background: url('../resources/images/content_paper_filling.png')
+                repeat-y scroll left top transparent;
+    height: 100%;
+    padding: 0 3px 0 20px;
+}
+
+/******* Data Table **********/
+
+#tasksForm\:tasksTable {
+	border-spacing: 10px;
+}
+
+#tasksForm\:tasksTable\:finCol {
+    width: 48px;
+}
+#tasksForm\:tasksTable\:lblCol {
+    width: 496px;
+    text-align: left;
+}
+#tasksForm\:tasksTable\:catCol {
+    width: 68px;
+    padding-left: 5px;
+    text-align: left;
+}
+#tasksForm\:tasksTable\:editBtnsCol {
+    width: 284px;
+}
+
+.taskFinished {
+    text-align: center;
+}
+
+
+/*****************************
+    Profile View
+*****************************/
+#profileForm {
+    background: url('../resources/images/content_paper_filling.png')
+                repeat-y scroll left top transparent;
+    height: 100%;
+    padding: 5px;
+}
+
+#profileForm label {
+    width: 100px;
+    display: inline-block;
+}
+
+/*************************************************
+    Hints and Messages
+*************************************************/
+#msgForm {
+    margin: 0 10px;
+    text-align: left;
+}
+#infobox table {
+
+}
+
+.labelClass{
+	width:200px;
+}
+.inputClass {
+	width:200px;
+}
+.messageClass {
+	width:500px;
+}
+
+.validationMessages {
+	color: red;
+	font-weight: bold;
+}
+
+.infoMessages {
+	color: green;
+	font-weight: bold;	
+}
+/*************************************************
+    Miscellaneous
+*************************************************/
+.ui-input-invalid {
+	border-color:red !important;	
+}
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+.right {
+  float: right;
+}
+
+.topAlignedWithMargin {
+	vertical-align: top;
+	margin-top: 3px;
+}
+
+.topAlignedColumn {
+	vertical-align: top;
+	width: 50%;
+}
+
+.horizontalGap {
+	margin-right: 10px;
+}
+
+.pageTitle {
+	padding-left: 15px;
+}
+
+ul.feedbackPanel {
+	list-style-type: none;
+	margin: 8px 0 10px 0;
+	padding: 4px 4px 4px 8px;
+	color: #990000;
+	background-color: #ffffeb;
+	border: 1px dotted #bab3ae;
+}
+
+.articlePageLabel {
+	width: 150px;
+	display: inline-block;
+}
+
+.bonusPageLabel {
+	width: 150px;
+	display: inline-block;
+}
+
+.formRowGroup {
+	padding-top: 2px;
+	padding-bottom: 5px;
+}
+
+.formInput {
+	width: 200px;
+	margin-right: 5px;
+}
+
+.informationImage {
+	vertical-align: middle;
+}
+
+.buttonBox {
+	padding-left: 10px;
+	padding-right: 20px;
+	text-align: right;
+}
+
+.articleMessage {
+	color: red;
+	display: block;
+	padding-left: 150px;
+}
+
+.inputErrorMessage {
+	color: red;
+	display: block;
+	padding-left: 150px;
+}
+
+.disabledGroup {
+	color: gray;
+	cursor: default;
+}
+
+/*************************************************
+    Colors
+*************************************************/
+/******* Task Categories *****/
+.todo {
+    margin-left: 15px;
+    color: rgba(162, 11, 18, 1.0);
+}
+
+.waiting {
+    margin-left: 15px;
+    color: rgba(46, 104, 174, 1.0);
+}
+
+.idea {
+    margin-left: 15px;
+    color: rgba(37, 106, 15, 1.0);
+}
+
+.read {
+    margin-left: 15px;
+    color: rgba(178, 127, 40, 1.0);
+}
+
+.private {
+    margin-left: 15px;
+    color: rgba(0, 0, 0, 1.0);
+}
+
+.business {
+    margin-left: 15px;
+    color: rgba(45, 82, 142, 1.0);
+}
+
+.important {
+    margin-left: 15px;
+    color: rgba(216, 28, 20, 1.0);
+}

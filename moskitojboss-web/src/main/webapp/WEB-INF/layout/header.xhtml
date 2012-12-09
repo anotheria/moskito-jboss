@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div id="header">
+		<h1 class="headerMoskitoJBossLogo">
+			<a href="#{facesContext.externalContext.requestContextPath}/pages/home.seam" class="headerMoskitoJBossLogo">
+                <img src="#{facesContext.externalContext.requestContextPath}/resources/images/moskito-logo.png" alt="MoSKito Tasks" />
+            </a>
+        </h1>
+				
+        <div class="headerLinkBox">
+			<h:form id="headerLinkForm">
+				<ui:fragment rendered="#{loginController.loggedIn}">
+                    <h:panelGroup id="userButtons" layout="block">
+                        <h:commandLink id="moskitoBtn" value="#{messages['org.zaunberg.moskitojboss.button.moskito']}"
+                                         action="#{navigationController.goMoskito}"
+                                         styleClass="lnkBtn"/>                                    
+                                                   
+                        <h:commandLink id="profileBtn" value="#{messages['org.zaunberg.moskitojboss.button.profile']} (#{loginController.user.login})"
+                                         action="#{navigationController.goProfile}"
+                                         styleClass="lnkBtn"/>                                      
+
+                        <h:commandLink id="logoutBtn" value="#{messages['org.zaunberg.moskitojboss.button.logout']}"
+                                         action="#{loginController.logout}"
+                                         styleClass="lnkBtn"/>
+                                         
+                    </h:panelGroup>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{not loginController.loggedIn}">
+					<span>
+					</span>
+				</ui:fragment>
+			</h:form>
+            <br />
+		</div>
+	</div>
+
+</ui:composition>

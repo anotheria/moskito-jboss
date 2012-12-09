@@ -1,0 +1,33 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/layout/main-template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="profileForm">
+            <h:panelGroup layout="block">
+
+                <br />
+
+                <h2>#{messages['org.zaunberg.moskitojboss.moskito.headline']}</h2>
+
+                <br />
+
+                <h:commandButton action="#{taskController.generate}"
+                                                     value="#{messages['org.zaunberg.moskitojboss.button.generateTasks']}" immediate="true"/>
+
+                <ul>
+                    <li><a href="#{facesContext.externalContext.requestContextPath}/mui/mskShowProducer?pProducerId=TaskCounter" target="_blank">Display TaskCounter Producer</a></li>
+                    <li><a href="#{facesContext.externalContext.requestContextPath}/mui/mskAccumulators" target="_blank">Display TaskCounter Accumulators</a></li>
+                    <li><a href="#{facesContext.externalContext.requestContextPath}/mui/mskThresholds" target="_blank">Display TaskCounter Thresholds</a></li>
+                </ul>
+                
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/layout/main-template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="registerForm" rendered="#{not loginController.loggedIn}">
+	            <fieldset>
+	            	<legend>#{messages['org.zaunberg.moskitojboss.registration.headline']}</legend>
+	            	<h:panelGrid columns="3" columnClasses="labelClass,inputClass,messageClass" rendered="#{not registrationController.registrationComplete}">
+                    <h:outputLabel for="loginName" value="#{messages['org.zaunberg.moskitojboss.profile.name']}"/>
+                    <h:inputText id="loginName" value="#{registrationController.user.login}" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.login']}">
+                    	<f:validator validatorId="org.zaunberg.moskitojboss.web.validator.UsernameValidator" />
+                    	<f:ajax event="blur" execute="loginName" render="m_loginName" /> 
+                    </h:inputText>
+                    <h:message id="m_loginName" for="loginName" styleClass="validationMessages"/>	
+
+                    <h:outputLabel for="password" value="#{messages['org.zaunberg.moskitojboss.profile.password']}"/>
+                    <h:inputSecret id="password" value="#{registrationController.user.password}" redisplay="true" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.password']}">
+					    <f:validator validatorId="org.zaunberg.moskitojboss.web.validator.ConfirmPasswordValidator" />
+					    <f:attribute name="pwConfirm" value="#{confirmPassword.submittedValue}" />
+					    <f:ajax event="blur" execute="password pwConfirm" render="m_password" />
+                    </h:inputSecret>
+                    <h:message id="m_password" for="password" styleClass="validationMessages"/>
+
+                    <h:outputLabel for="pwConfirm" value="#{messages['org.zaunberg.moskitojboss.profile.pwConfirm']}"/>
+                    <h:inputSecret id="pwConfirm" binding="#{confirmPassword}" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.password']}">
+                    	<f:ajax event="blur" execute="password pwConfirm" render="m_password m_pwConfirm" />
+                    </h:inputSecret>
+                    <h:message id="m_pwConfirm" for="pwConfirm" styleClass="validationMessages"/>
+
+                    <h:outputLabel for="firstName" value="#{messages['org.zaunberg.moskitojboss.profile.firstName']}"/>
+                    <h:inputText id="firstName" value="#{registrationController.user.firstName}" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.firstName']}">
+                    	<f:ajax event="blur" execute="firstName" render="m_firstName" /> 
+                    </h:inputText>
+                    <h:message id="m_firstName" for="firstName" styleClass="validationMessages"/>
+
+                    <h:outputLabel for="lastName" value="#{messages['org.zaunberg.moskitojboss.profile.lastName']}"/>
+                    <h:inputText id="lastName" value="#{registrationController.user.lastName}" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.lastName']}">
+                    	<f:ajax event="blur" execute="lastName" render="m_lastName" /> 
+                    </h:inputText>
+                    <h:message id="m_lastName" for="lastName" styleClass="validationMessages"/>
+
+                    <h:outputLabel for="mail" value="#{messages['org.zaunberg.moskitojboss.profile.mail']}"/>
+                    <h:inputText id="mail" value="#{registrationController.user.email}" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.email']}">
+                    	<f:validator validatorId="org.zaunberg.moskitojboss.web.validator.EmailValidator" /> 	
+                    	<f:ajax event="blur" execute="mail" render="m_mail" /> 
+                    </h:inputText>
+                    <h:message id="m_mail" for="mail" styleClass="validationMessages"/>
+					</h:panelGrid>
+					
+					
+                    <!-- Profile Buttons -->
+                    <h:panelGrid columns="1">
+	                    <h:panelGroup rendered="#{not registrationController.registrationComplete}">
+		                    <h:commandButton id="confirmBtn" value="#{messages['org.zaunberg.moskitojboss.button.registerNow']}"
+		                                       action="#{registrationController.createUser}"
+		                                       styleClass="lnkBtn"/>
+		                    <h:commandButton id="cancelBtn" value="#{messages['org.zaunberg.moskitojboss.button.cancel']}"
+	                    					action="#{navigationController.goLogin}"
+	                                       styleClass="lnkBtn">
+	                    		<f:ajax execute="@this" />
+	                    	</h:commandButton>
+	                    </h:panelGroup>                    
+                                       
+	                    <h:panelGroup rendered="#{registrationController.registrationComplete}">
+	                    	<h:outputText value="#{messages['org.zaunberg.moskitojboss.registration.complete']}" styleClass="infoMessages"/>
+                            <br /><br />
+		                    <h:commandButton id="okBtn" value="#{messages['org.zaunberg.moskitojboss.registration.login']}"
+		                                       action="#{navigationController.goLogin}"
+		                                       styleClass="lnkBtn">   
+								<f:ajax execute="@this" />
+		                    </h:commandButton>                                    
+	                    </h:panelGroup>                   
+                    </h:panelGrid>                   
+                                       
+	            </fieldset>           
+        </h:form>
+    </ui:define>
+</ui:composition>

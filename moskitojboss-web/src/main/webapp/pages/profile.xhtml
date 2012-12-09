@@ -1,0 +1,76 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/layout/main-template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="profileForm">
+            <h:panelGroup layout="block">
+
+                <br />
+
+                <h2>#{messages['org.zaunberg.moskitojboss.profile.headline']}</h2>
+
+                <fieldset id="userData">
+                    <h:outputLabel for="loginName" value="#{messages['org.zaunberg.moskitojboss.profile.name']}"/>
+                    <h:inputText id="loginName" value="#{profileController.user.login}"
+                                 readonly="#{!profileController.editable}"/>
+                    <br/>
+
+                    <h:outputLabel for="password" value="#{messages['org.zaunberg.moskitojboss.profile.password']}"/>
+                    <h:inputSecret id="password" value="#{profileController.user.password}"
+                                   readonly="#{!profileController.editable}"
+                                   redisplay="true"/>
+                    <br/>
+
+                    <h:outputLabel for="pwConfirm" value="#{messages['org.zaunberg.moskitojboss.profile.pwConfirm']}"/>
+                    <h:inputSecret id="pwConfirm" value="#{profileController.user.password}"
+                                   readonly="#{!profileController.editable}"
+                                   redisplay="true"/>
+                    <br/>
+
+                    <h:outputLabel for="firstName" value="#{messages['org.zaunberg.moskitojboss.profile.firstName']}"/>
+                    <h:inputText id="firstName" value="#{profileController.user.firstName}"
+                                 readonly="#{!profileController.editable}"/>
+                    <br/>
+
+                    <h:outputLabel for="lastName" value="#{messages['org.zaunberg.moskitojboss.profile.lastName']}"/>
+                    <h:inputText id="lastName" value="#{profileController.user.lastName}"
+                                 readonly="#{!profileController.editable}"/>
+                    <br/>
+
+                    <h:outputLabel for="mail" value="#{messages['org.zaunberg.moskitojboss.profile.mail']}"/>
+                    <h:inputText id="mail" value="#{profileController.user.email}"
+                                 readonly="#{!profileController.editable}"/>
+                    <br/>
+
+                    <!-- Profile Buttons -->
+                    <h:commandButton id="editBtn" value="#{messages['org.zaunberg.moskitojboss.button.edit']}"
+                                       action="#{profileController.enableEditMode}"
+                                       rendered="#{!profileController.editable}"
+                                       styleClass="lnkBtn"/>
+
+                    <h:commandButton id="confirmBtn" value="#{messages['org.zaunberg.moskitojboss.button.confirm']}"
+                                       action="#{profileController.updateUser}"
+                                       rendered="#{profileController.editable}"
+                                       styleClass="lnkBtn"/>
+
+                    <h:commandButton id="cancelBtn" value="#{messages['org.zaunberg.moskitojboss.button.cancel']}"
+                                       action="#{profileController.disableEditMode}"
+                                       rendered="#{profileController.editable}"
+                                       styleClass="lnkBtn"/>
+
+                    <h:commandButton id="removeBtn" value="#{messages['org.zaunberg.moskitojboss.button.removeProfile']}"
+                                       action="#{profileController.removeUser}"
+                                       rendered="#{profileController.editable}"
+                                       styleClass="lnkBtn"
+                                       onclick="if (!confirm('Are you sure?')) return false;"
+                                       />
+                </fieldset>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>
