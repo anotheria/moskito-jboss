@@ -41,7 +41,7 @@ Build project with Maven: mvn clean install -U
 </subsystem>
 ```
 
-**5)** Start JBoss and deploy artifact //PROJECT-HOME//moskitojboss-web/target/moskitojboss.war
+**5)** Start JBoss and deploy artifact //PROJECT-HOME//moskitojboss-web/target/moskitojboss.war to //JBOSS_HOME/standalone/deployments
 
 **6)** Start application in Browser: http://localhost:8080/moskitojboss/
 
