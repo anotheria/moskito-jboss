@@ -30,8 +30,8 @@ h3 {
     margin: 0 0 0 11px;
 }
 
-fieldset { 
-	border: 2px solid white; 
+fieldset {
+	border: 2px solid white;
 	border-radius: 6px;
 }
 
@@ -272,7 +272,7 @@ a.headeMoskitoJBossLogo, a.headerMoskitoJBossLogo:hover {
 
 }
 #loginForm fieldset input[type=text],
-#loginForm fieldset input[type=password], 
+#loginForm fieldset input[type=password],
 #registerForm fieldset input[type=text],
 #registerForm fieldset input[type=password],{
     width: 120px;
@@ -360,13 +360,13 @@ a.headeMoskitoJBossLogo, a.headerMoskitoJBossLogo:hover {
 
 .infoMessages {
 	color: green;
-	font-weight: bold;	
+	font-weight: bold;
 }
 /*************************************************
     Miscellaneous
 *************************************************/
 .ui-input-invalid {
-	border-color:red !important;	
+	border-color:red !important;
 }
 
 .clear {
@@ -450,6 +450,14 @@ ul.feedbackPanel {
 .disabledGroup {
 	color: gray;
 	cursor: default;
+}
+
+.taskFinished {
+	margin-right: 5px;
+}
+
+#tasksForm:tasksTable td {
+	margin-right: 5px;
 }
 
 /*************************************************

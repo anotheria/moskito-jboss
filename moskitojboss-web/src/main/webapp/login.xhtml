@@ -12,23 +12,30 @@
 	            	<legend>#{messages['org.zaunberg.moskitojboss.login.headline']}</legend>
 	            	<h:panelGrid columns="3" columnClasses="labelClass,inputClass,messageClass">
 		                <h:outputLabel for="username" value="#{messages['org.zaunberg.moskitojboss.login.name']}"/>
-		                <h:inputText id="username" value="#{loginController.loginName}" redisplay="true" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.login']}"/>
+		                <h:inputText id="username" value="#{loginController.loginName}" redisplay="true" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.login']}">
+		                	<f:ajax event="blur" execute="username" render="m_username" /> 
+		                </h:inputText>
 						<h:message id="m_username" for="username" styleClass="validationMessages"/>
 						
+						
 		                <h:outputLabel for="password" value="#{messages['org.zaunberg.moskitojboss.login.password']}"/>
-		                <h:inputSecret id="password" value="#{loginController.password}" redisplay="true" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.password']}"/>
-						<h:message id="m_password" for="password" styleClass="validationMessages"/>
+		                <h:inputSecret id="password" value="#{loginController.password}" redisplay="true" required="true" requiredMessage="#{messages['org.zaunberg.moskitojboss.register.error.password']}">
+		                	<f:ajax event="blur" execute="password" render="m_password" />
+		                </h:inputSecret>
+		                <h:message id="m_password" for="password" styleClass="validationMessages"/>
+		
 		
 		                <h:commandButton id="loginBtn" value="#{messages['org.zaunberg.moskitojboss.button.login']}"
-		                                 action="#{loginController.login}" styleClass="lnkBtn">
-		                	<f:ajax execute="@this loginForm" />                
+		                                 action="#{loginController.login}" styleClass="lnkBtn"> 
+		                	                       
 		                </h:commandButton>
 	
 		                <h:commandButton id="registerBtn" value="#{messages['org.zaunberg.moskitojboss.button.register']}"
 		                                 action="#{navigationController.goRegistration}" styleClass="lnkBtn">
 		                	<f:ajax execute="@this" />
-		                </h:commandButton>
+		                </h:commandButton>     
 	                </h:panelGrid>
+	                <center><h:message id="m_login" for="loginBtn" styleClass="validationMessages"/></center>
 	            </fieldset>  
         </h:form>
     </ui:define>

@@ -8,15 +8,19 @@ import org.zaunberg.moskitojboss.web.UserChangedEvent;
 
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.ResourceBundle;
 
 /**
  * @author <a href="mailto:michaelschuetz83@gmail.com">Michael Schuetz</a>
  */
 @WebController
 public class LoginController implements Serializable {
-
+	
     private String loginName;
     private String password;
     private User user;
@@ -27,6 +31,12 @@ public class LoginController implements Serializable {
 
     @Inject
     private Logger log;
+    
+	@Inject
+	private transient ResourceBundle bundle; 
+	
+	@Inject
+	private FacesContext facesContext;	
 
 // -------------- Initialization ------------------------------------------------------
 
@@ -50,6 +60,8 @@ public class LoginController implements Serializable {
 
             this.loggedIn = false;
             this.user = null;
+            
+            facesContext.addMessage("loginForm:loginBtn", new FacesMessage(bundle.getString("org.zaunberg.moskitojboss.login.error")));  
         }
 
         return forward;
