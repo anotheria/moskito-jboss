@@ -19,13 +19,14 @@ Getting started
     <url>http://repository.jboss.org/nexus/content/repositories/releases</url>
 </repository>
 ```
-Build project with Maven: mvn clean install -U
 
-**2)** Setup build.properties, use provided build.properties.template as template. This is mainly useful when starting JBoss straight from IDE.
+**2)** Setup build.properties, use provided build.properties.template as template. This is mainly useful for both Maven build and starting JBoss from IDE.
 
-**3)** Download JBoss AS 7: http://www.jboss.org/jbossas/downloads/
+**3)** Build project with Maven: mvn clean install -U
 
-**4)** Setup DataSource: for demo application we are using InProcess HSQL Database, define within //JBOSS_HOME/standalone/configuration/standalone.xml
+**4)** Download JBoss AS 7: http://www.jboss.org/jbossas/downloads/
+
+**5)** Setup DataSource: for demo application we are using InProcess HSQL Database, define within //JBOSS_HOME/standalone/configuration/standalone.xml
 ```XML
 <subsystem xmlns="urn:jboss:domain:datasources:1.0">
       <datasources>
@@ -41,12 +42,12 @@ Build project with Maven: mvn clean install -U
 </subsystem>
 ```
 
-**5)** Start JBoss and deploy artifact //PROJECT-HOME//moskitojboss-web/target/moskitojboss.war to //JBOSS_HOME/standalone/deployments
+**6)** Start JBoss and deploy artifact //PROJECT-HOME//moskitojboss-web/target/moskitojboss.war to //JBOSS_HOME/standalone/deployments
 
-**6)** Start application in Browser: http://localhost:8080/moskitojboss/
+**7)** Start application in Browser: http://localhost:8080/moskitojboss/
 
-**7)** Login with initial user or create your own
+**8)** Login with initial user or create your own
 
-**8)** Play around, add some tasks and check MoSKito Producers, Accumulators and Thresholds localhost:8080/moskitojboss/mui/
+**9)** Play around, add some tasks and check MoSKito Producers, Accumulators and Thresholds localhost:8080/moskitojboss/mui/
 
-**9)** Give us feedback and/or contribute in any ways. :-)
+**10)** Give us feedback and/or contribute in any ways. :-)
