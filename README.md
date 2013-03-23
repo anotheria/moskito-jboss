@@ -4,7 +4,7 @@ moskito-jboss
 Integrating MoSKito DevOps monitoring tool into JBoss AS 7 Java EE 6 application.
 
 Runs with:
-* MoSKito 2.1.2 (See changelog https://confluence.opensource.anotheria.net/display/MSK/03+Change+Log)
+* *MoSKito 2.2.1* (See changelog https://confluence.opensource.anotheria.net/display/MSK/03+Change+Log)
 * Java EE 6 Stack, including CDI, EJB 3.1 and Seam 3.1 extension
 * JBoss AS 7.1.1
 
@@ -46,7 +46,7 @@ Getting started
 
 **7)** Start application in Browser: http://localhost:8080/moskitojboss/
 
-**8)** Login with initial user or create your own
+**8)** Login with initial user (jim | secret ) or create your own
 
 **9)** Play around, add some tasks and check MoSKito Producers, Accumulators and Thresholds localhost:8080/moskitojboss/mui/
 
