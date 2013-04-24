@@ -36,7 +36,7 @@ Getting started
               <security>
                   <user-name>sa</user-name>
                   <password>sa</password>
-              <security>
+              </security>
           </datasource>
       </datasources>
 </subsystem>
