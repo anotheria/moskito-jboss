@@ -5,4 +5,10 @@
     xsi:schemaLocation="
         http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
+    <interceptors>
+        <class>net.anotheria.moskito.integration.cdi.CallInterceptor</class>
+        <class>net.anotheria.moskito.integration.cdi.ServiceCallInterceptor</class>
+        <class>net.anotheria.moskito.integration.cdi.CountInterceptor</class>
+    </interceptors>
+
 </beans>

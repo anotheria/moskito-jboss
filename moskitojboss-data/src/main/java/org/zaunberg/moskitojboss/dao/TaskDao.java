@@ -1,5 +1,7 @@
 package org.zaunberg.moskitojboss.dao;
 
+import net.anotheria.moskito.integration.cdi.Monitor;
+import net.anotheria.moskito.integration.cdi.ProducerDefinition;
 import org.zaunberg.moskitojboss.dao.common.JpaGenericDao;
 import org.zaunberg.moskitojboss.domain.Task;
 import org.zaunberg.moskitojboss.domain.User;
@@ -13,7 +15,9 @@ import java.util.Map;
  * @author <a href="mailto:marek.i@gmx.net">Marek Iwaszkiewicz</a>
  * @author <a href="mailto:michaelschuetz83@gmail.com">Michael Schuetz</a>
  */
+@Monitor()
 @Stateless
+@ProducerDefinition(producerId="TaskDao", category="dao", subsystem="tasks")
 public class TaskDao extends JpaGenericDao<Task> {
 
     public List<Task> findForCategory(Category category) {

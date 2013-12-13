@@ -1,5 +1,6 @@
 package org.zaunberg.moskitojboss.web.controller;
 
+import net.anotheria.moskito.integration.cdi.ProducerDefinition;
 import org.slf4j.Logger;
 import org.zaunberg.moskitojboss.business.TaskService;
 import org.zaunberg.moskitojboss.domain.Task;
@@ -13,7 +14,6 @@ import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.zaunberg.moskitojboss.web.PageConstants.HOME_PAGE;
 
@@ -22,6 +22,7 @@ import static org.zaunberg.moskitojboss.web.PageConstants.HOME_PAGE;
  * @author <a href="mailto:michaelschuetz83@gmail.com">Michael Schuetz</a>
  */
 @WebController
+@ProducerDefinition(producerId="TaskController", category="web", subsystem="tasks")
 public class TaskController implements Serializable {
 
     private static final long serialVersionUID = 1L;

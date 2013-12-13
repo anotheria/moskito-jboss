@@ -17,6 +17,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.anotheria</groupId>
+            <artifactId>moskito-cdi</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.jboss.spec</groupId>
             <artifactId>jboss-javaee-6.0</artifactId>
             <type>pom</type>

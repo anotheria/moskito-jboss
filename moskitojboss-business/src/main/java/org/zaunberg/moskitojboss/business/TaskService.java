@@ -1,6 +1,7 @@
 package org.zaunberg.moskitojboss.business;
 
 import net.anotheria.moskito.integration.cdi.Monitor;
+import net.anotheria.moskito.integration.cdi.ProducerDefinition;
 import org.zaunberg.moskitojboss.business.counter.TaskCounter;
 import org.zaunberg.moskitojboss.dao.TaskDao;
 import org.zaunberg.moskitojboss.domain.Task;
@@ -23,6 +24,7 @@ import static net.anotheria.moskito.integration.cdi.MonitoringCategorySelector.S
  */
 @Monitor(SERVICE)
 @Stateless
+@ProducerDefinition(producerId="TaskService", category="service", subsystem="tasks")
 public class TaskService implements Serializable {
 
     @Inject

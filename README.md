@@ -4,7 +4,7 @@ moskito-jboss
 Integrating MoSKito DevOps monitoring tool into JBoss AS 7 Java EE 6 application.
 
 Runs with:
-* *MoSKito 2.2.1* (See changelog https://confluence.opensource.anotheria.net/display/MSK/03+Change+Log)
+* *MoSKito 2.4.0* (See changelog https://confluence.opensource.anotheria.net/display/MSK/Change+Log)
 * Java EE 6 Stack, including CDI, EJB 3.1 and Seam 3.1 extension
 * JBoss AS 7.1.1
 
